@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -1vap | sed ':a;N;$!ba;s/\n/, /g'
+ls -1vap | perl -pe 's/\n/, /g'
