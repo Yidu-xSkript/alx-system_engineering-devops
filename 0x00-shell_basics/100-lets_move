@@ -1,2 +1,2 @@
 #!/bin/bash
-LC_ALL=C mv ./*[A-Z]* /tmp/u/
+mv ./*[[:upper:]]* /tmp/u/
