@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -1vap | tr '\n' ',' 
+ls -1vap | tr '\n' ', \t' 
