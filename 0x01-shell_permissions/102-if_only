@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -user guillaume | xargs chown betty hello
+find -user guillaume -name hello | xargs chown betty
