@@ -1,2 +1,2 @@
 #!/bin/bash
-if [[ id -u -n = "guillaume" ]] then chown betty hello fi
+find . -user guillaume | xargs chown betty hello
