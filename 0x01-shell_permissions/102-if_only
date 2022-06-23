@@ -1,0 +1,8 @@
+#!/bin/bash
+
+_user = "$(id -u -n)"
+
+if [[ $_user = guillaume ]] 
+then
+  chown betty hello
+fi
