@@ -1,2 +1,2 @@
 #!/bin/bash
-echo -e "`expr $TRUEKNOWLEDGE + 128`\n"
+echo `expr $TRUEKNOWLEDGE + 128`
