@@ -1,1 +1,1 @@
-# 0x06 Regular Expressions (RegExp.)
+# 0x06 Regular Expressions (RegEx.)
