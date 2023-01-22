@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Install HAProxy 2.4 (for ubuntu 20.04)
+# Uses a round-robin algo to distribute requests
+# configuration for 2 webservers added
+
+sudo apt install --no-install-recommends software-properties-common
+sudo add-apt-repository ppa:vbernat/haproxy-2.4 -y
+sudo apt-get update
+sudo apt install haproxy=2.4.\*
+sudo echo "ENABLED=1" >> /etc/default/haproxy
+mv /etc/haproxy/haproxy.cfg{,.original}
+touch /etc/haproxy/haproxy.cfg
+
+printf %s "global
+    log 127.0.0.1 local0 notice
+    maxconn 2000
+    user haproxy
+    group haproxy
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    retries 3
+    option redispatch
+    timeout connect  5000
+    timeout client  10000
+    timeout server  10000
+listen stats
+    bind 0.0.0.0:80
+    mode http
+    stats enable
+    stats uri /haproxy?stats
+    balance roundrobin
+    option httpclose
+    option forwardfor
+    server 89273-web-01 100.25.29.10:80 check
+    server 89273-web-02 100.25.21.86:80 check
+" >> /etc/haproxy/haproxy.cfg
+
+service haproxy start
