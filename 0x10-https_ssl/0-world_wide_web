@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# write a Script that displays info about subdomains
+
+subdomains=( "www" "lb-01" "web-01" "web-02" )
+
+digCmd () {
+	dig "$1.$2" | grep -A1 'ANSWER SECTION:' | tail -1 | awk -v s="$1" 'BEGIN { FS = " " } ; { print "The subdomain " s " is a " $4 " record and points to " $5 }'
+}
+
+if [ $# -eq 1 ]; then
+	for i in "${subdomains[@]}"
+	do
+		digCmd "$i" "$1"
+	done
+elif [ $# -eq 2 ]; then
+	digCmd "$2" "$1"
+fi
