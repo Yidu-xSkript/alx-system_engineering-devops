@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Export todo list to JSON."""
-import sys
-import requests
 import json
+import requests
+import sys
 
 if __name__ == "__main__":
     userId = sys.argv[1]
